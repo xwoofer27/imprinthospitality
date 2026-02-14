@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imprint Hospitality | Premier Hotel Revenue Management</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            background-color: #f8f8f8;
+        }
+        
+        h1, h2, h3, .logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #0c3c78, #ff6b35);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #ff6b35, #0c3c78);
+        }
+        
+        /* Transparent Navbar - Smooth Transition */
+        .navbar {
+            background: transparent !important;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            padding: 25px 0;
+            z-index: 1000;
+        }
+        
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+        }
+        
+        .navbar.scrolled .nav-link {
+            color: #333 !important;
+        }
+        
+        .navbar.scrolled .nav-link:hover {
+            color: #0c3c78 !important;
+        }
+        
+        .navbar.scrolled .logo-main {
+            color: #0c3c78;
+        }
+        
+        .navbar.scrolled .logo-tagline {
+            color: #ff6b35;
+        }
+        
+        .navbar .nav-link {
+            color: white !important;
+            font-weight: 500;
+            font-size: 16px;
+            margin: 0 15px;
+            position: relative;
+            padding: 5px 0 !important;
+            transition: all 0.4s ease;
+        }
+        
+        .navbar .nav-link::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, white, #ff6b35);
+            left: 0;
+            bottom: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .navbar .nav-link:hover::before {
+            width: 100%;
+        }
+        
+        .navbar.scrolled .nav-link::before {
+            background: linear-gradient(90deg, #0c3c78, #ff6b35);
+        }
+        
+        .navbar .logo-main {
+            font-size: 34px;
+            font-weight: 800;
+            color: white;
+            letter-spacing: 1px;
+            transition: color 0.5s ease;
+        }
+        
+        .navbar .logo-tagline {
+            font-size: 12px;
+            color: #ff6b35;
+            letter-spacing: 3px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            transition: color 0.5s ease;
+        }
+        
+        /* FIXED: Hamburger Menu Styles - Perfect Toggle */
+        .navbar-toggler {
+            border: none !important;
+            outline: none !important;
+            padding: 0 !important;
+            width: 40px;
+            height: 40px;
+            position: relative;
+            z-index: 10000 !important;
+            background: transparent !important;
+            box-shadow: none !important; /* Add this line */
+        }        
+        .mobile-menu-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            font-size: 28px;
+            color: white !important;
+            transition: all 0.3s ease;
+        }
+        /* Add these new rules */
+        .navbar-toggler[aria-expanded="true"] .mobile-menu-btn {
+            color: #0c3c78 !important; /* Dark blue when menu is open */
+        }
+        
+        .navbar.scrolled .mobile-menu-btn {
+            color: #0c3c78 !important;
+        }
+        
+        /* Menu open state - change icon to times */
+        .navbar-toggler[aria-expanded="true"] .mobile-menu-btn i {
+            content: "\f00d"; /* Font Awesome close icon */
+        }
+        
+        .navbar-toggler[aria-expanded="true"] .mobile-menu-btn i::before {
+            content: "\f00d"; /* Force close icon when menu is open */
+        }
+        
+        /* Mobile Menu Styles - No relocation */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: white !important;
+                z-index: 9999;
+                padding: 100px 0 30px;
+                transform: translateX(100%);
+                transition: transform 0.4s ease-in-out;
+                overflow-y: auto;
+                display: block !important;
+                visibility: hidden;
+            }
+            
+            .navbar-collapse.show {
+                transform: translateX(0);
+                visibility: visible;
+            }
+            
+            .navbar-nav {
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                height: auto;
+                padding: 20px 0;
+            }
+            
+            .navbar-nav .nav-item {
+                margin: 15px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .navbar-nav .nav-link {
+                color: #333 !important;
+                font-size: 1.2rem;
+                padding: 10px 0 !important;
+                display: inline-block;
+            }
+            
+            .navbar-nav .nav-link::before {
+                background: linear-gradient(90deg, #0c3c78, #ff6b35);
+                bottom: 5px;
+            }
+            
+            /* Prevent body scroll when menu is open */
+            body.menu-open {
+                overflow: hidden;
+            }
+            
+            /* Ensure navbar container doesn't shift */
+            .navbar .container {
+                position: relative;
+            }
+            
+            /* Keep hamburger in place */
+            .navbar-toggler {
+                position: relative;
+                right: 0;
+            }
+        }
+        
+        /* Video Hero Section */
+        .video-hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .video-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            z-index: -1;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(12, 60, 120, 0.6) 0%, rgba(0, 0, 0, 0.7) 100%);
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 20px;
+            animation: fadeInUp 1.5s ease;
+        }
+        
+        .hero-content h1 {
+            font-size: 5rem;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+            animation: slideInDown 1.5s ease;
+        }
+        
+        .hero-content p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: slideInUp 1.5s ease 0.2s both;
+        }
+        
+        .hero-buttons {
+            animation: fadeIn 2s ease 0.4s both;
+        }
+        
+        .hero-buttons .btn {
+            margin: 0 10px;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-buttons .btn-primary {
+            background: linear-gradient(90deg, #ff6b35, #ff8e53);
+            border: none;
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
+        }
+        
+        .hero-buttons .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 107, 53, 0.5);
+        }
+        
+        .hero-buttons .btn-outline-light {
+            border: 2px solid white;
+            background: transparent;
+        }
+        
+        .hero-buttons .btn-outline-light:hover {
+            background: white;
+            color: #0c3c78;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            color: white;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+        }
+        
+        .scroll-indicator i {
+            display: block;
+            margin-top: 10px;
+            font-size: 20px;
+        }
+        
+        /* Hero Stats */
+        .hero-stats {
+            position: absolute;
+            bottom: 100px;
+            left: 0;
+            right: 0;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+        
+        .stat-badge {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 12px 30px;
+            text-align: center;
+            color: white;
+            min-width: 180px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-badge:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        .stat-badge .stat-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #ff6b35;
+            display: inline-block;
+            margin-right: 5px;
+        }
+        
+        .stat-badge .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        /* Full Width Zoom Carousel */
+        .zoom-carousel-section {
+            padding: 100px 0 0;
+            background-color: white;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 3.2rem;
+            color: #0c3c78;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            letter-spacing: -0.5px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #0c3c78, #ff6b35);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 25px auto 0;
+            font-size: 1.2rem;
+        }
+        
+        .full-width-carousel {
+            width: 100%;
+            height: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .zoom-carousel {
+            display: flex;
+            transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            height: 100%;
+            width: 100%;
+        }
+        
+        .zoom-slide {
+            min-width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.8s ease;
+        }
+        
+        .zoom-slide:hover {
+            transform: scale(1.03);
+        }
+        
+        .zoom-slide::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 30%, rgba(0, 0, 0, 0.85) 100%);
+            transition: opacity 0.8s ease;
+        }
+        
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            color: white;
+            z-index: 3;
+            padding: 60px 80px;
+            text-align: left;
+            animation: fadeInUp 1s ease;
+            transition: all 0.5s ease;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+            transform: translateY(10px);
+        }
+        
+        .zoom-slide:hover .slide-content {
+            transform: translateY(0);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+        }
+        
+        .slide-content h3 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .slide-content p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            max-width: 700px;
+            font-weight: 300;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .slide-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            min-width: 100px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ff6b35;
+            display: block;
+            line-height: 1;
+            font-family: 'Playfair Display', serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.95;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            padding-bottom: 50px;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            margin: 0 8px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .indicator.active {
+            background: #0c3c78;
+            transform: scale(1.2);
+        }
+        
+        .indicator.active::after {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid #0c3c78;
+            left: -3px;
+            top: -3px;
+            animation: pulse 2s infinite;
+        }
+        
+        /* Services Section */
+        .services-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f0f7ff 0%, #e6f0fa 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .services-section::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+            top: -150px;
+            right: -150px;
+            animation: rotateSlow 20s infinite linear;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+            padding: 35px 25px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            height: 100%;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(12, 60, 120, 0.2);
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #0c3c78, #ff6b35);
+            top: 0;
+            left: 0;
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+            transform-origin: left;
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-icon {
+            background: linear-gradient(135deg, #f0f7ff, #d4e4ff);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: #0c3c78;
+            font-size: 36px;
+            transition: all 0.6s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .service-card:hover .service-icon {
+            background: linear-gradient(135deg, #0c3c78, #1c6fd6);
+            color: white;
+            transform: rotateY(360deg) scale(1.1);
+            box-shadow: 0 15px 30px rgba(12, 60, 120, 0.3);
+        }
+        
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: #0c3c78;
+            transition: color 0.3s ease;
+        }
+        
+        .service-card:hover h3 {
+            color: #ff6b35;
+        }
+        
+        /* Testimonials Carousel */
+        .testimonials-section {
+            padding: 100px 0;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonials-slider-container {
+            max-width: 1000px;
+            margin: 50px auto 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+        
+        .testimonials-slider {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            width: 100%;
+        }
+        
+        .testimonial-slide {
+            min-width: 100%;
+            padding: 0 40px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        
+        .testimonial-card {
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            border-radius: 30px;
+            padding: 50px;
+            margin: 20px 0;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border: 1px solid rgba(12, 60, 120, 0.1);
+            transition: all 0.5s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 30px 70px rgba(12, 60, 120, 0.15);
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 6rem;
+            color: rgba(12, 60, 120, 0.1);
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .testimonial-text {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .author-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0c3c78, #ff6b35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .author-info h4 {
+            color: #0c3c78;
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .author-info p {
+            color: #777;
+            font-size: 1rem;
+        }
+        
+        .testimonial-indicators {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .testimonial-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            margin: 0 8px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        
+        .testimonial-indicator.active {
+            background: #0c3c78;
+            transform: scale(1.2);
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #0c3c78 0%, #1c6fd6 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .stat-box .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #ff6b35;
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+        }
+        
+        .stat-box .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            letter-spacing: 1px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 120px 0;
+            background: linear-gradient(135deg, rgba(12, 60, 120, 0.9) 0%, rgba(28, 110, 214, 0.9) 100%), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .cta-section h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .cta-section .btn {
+            padding: 16px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            background: #ff6b35;
+            border: none;
+            transition: all 0.4s ease;
+        }
+        
+        .cta-section .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.4);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #0a1f3d;
+            color: #ccc;
+            padding: 70px 0 30px;
+            position: relative;
+        }
+        
+        .footer-widget {
+            margin-bottom: 30px;
+        }
+        
+        .footer-widget h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            position: relative;
+            padding-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .footer-widget h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background: #ff6b35;
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .footer-links a:hover {
+            color: #ff6b35;
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            font-size: 16px;
+        }
+        
+        .social-links a:hover {
+            background: #ff6b35;
+            transform: translateY(-5px) rotate(360deg);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 40px;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+        }
+        
+        @keyframes rotateSlow {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .hero-content h1 {
+                font-size: 4rem;
+            }
+            
+            .full-width-carousel {
+                height: 500px;
+            }
+            
+            .slide-content {
+                padding: 50px 60px;
+            }
+            
+            .slide-content h3 {
+                font-size: 2.4rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 3.2rem;
+            }
+            
+            .full-width-carousel {
+                height: 450px;
+            }
+            
+            .slide-content {
+                padding: 40px 50px;
+            }
+            
+            .slide-content h3 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-stats {
+                bottom: 80px;
+                gap: 20px;
+            }
+            
+            .stat-badge {
+                padding: 10px 20px;
+                min-width: 150px;
+            }
+            
+            .stat-badge .stat-number {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .full-width-carousel {
+                height: 400px;
+            }
+            
+            .slide-content {
+                padding: 30px 25px;
+            }
+            
+            .slide-content h3 {
+                font-size: 1.8rem;
+            }
+            
+            .slide-content p {
+                font-size: 1rem;
+            }
+            
+            .slide-stats {
+                gap: 20px;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                align-items: center;
+                bottom: 60px;
+            }
+            
+            .stat-badge {
+                width: 80%;
+            }
+            
+            .hero-buttons .btn {
+                display: block;
+                margin: 10px auto;
+                width: 80%;
+            }
+            
+            .cta-section h2 {
+                font-size: 2.5rem;
+            }
+            
+            .testimonial-card {
+                padding: 35px;
+            }
+            
+            .testimonial-text {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .full-width-carousel {
+                height: 350px;
+            }
+            
+            .slide-stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .stat-item {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                text-align: left;
+            }
+            
+            .stat-number {
+                margin-right: 10px;
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+            
+            .testimonial-card {
+                padding: 25px;
+            }
+            
+            .testimonial-author {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Transparent Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <div class="logo">
+                    <div class="logo-main">Imprint Hospitality</div>
+                    <div class="logo-tagline">REVENUE OPTIMIZATION</div>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="mobile-menu-btn">
+                    <i class="fas fa-bars" id="menuIcon"></i>
+                </span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#success">Success Stories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Video Hero Section -->
+    <section class="video-hero" id="home">
+        <!-- Video Background -->
+        <video class="video-background" autoplay muted loop playsinline>
+            <source src="./mixkit-sunny-hotel-resort-with-waterslides-by-the-pool-49555-hd-ready.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        
+        <!-- Dark Overlay -->
+        <div class="video-overlay"></div>
+        
+        <!-- Hero Content -->
+        <div class="hero-content">
+            <h1 data-aos="fade-down" data-aos-duration="700">Revolutionizing Hotel Revenue Management</h1>
+            <p data-aos="fade-up" data-aos-duration="700" data-aos-delay="200">Imprint Hospitality delivers cutting-edge revenue optimization solutions powered by AI and deep industry expertise.</p>
+            <div class="hero-buttons" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
+                <a href="#contact" class="btn btn-primary">Get Free Revenue Audit</a>
+                <a href="#services" class="btn btn-outline-light">Our Services</a>
+            </div>
+        </div>
+        
+        <!-- Hero Stats -->
+        <!-- <div class="hero-stats">
+            <div class="stat-badge" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="600">
+                <span class="stat-number">450+</span>
+                <span class="stat-label">Hotels</span>
+            </div>
+            <div class="stat-badge" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="800">
+                <span class="stat-number">35%</span>
+                <span class="stat-label">Avg Growth</span>
+            </div>
+            <div class="stat-badge" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1000">
+                <span class="stat-number">28</span>
+                <span class="stat-label">Countries</span>
+            </div>
+        </div> -->
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator" onclick="scrollToSection()">
+            <span>Scroll Down</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Full Width Zoom Carousel -->
+    <section class="zoom-carousel-section" id="success">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up" data-aos-duration="700">
+                <h2>Success Stories</h2>
+                <p>Discover how our innovative solutions have revolutionized revenue management for hotels worldwide.</p>
+            </div>
+        </div>
+        
+        <div class="full-width-carousel" data-aos="fade-up" data-aos-duration="700" data-aos-delay="200">
+            <div class="zoom-carousel" id="zoomCarousel">
+                <div class="zoom-slide" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');">
+                    <div class="slide-content">
+                        <h3>Luxury Resort Chain</h3>
+                        <p>42% RevPAR growth across 12 luxury resorts within 18 months.</p>
+                        <div class="slide-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">42%</span>
+                                <span class="stat-label">RevPAR</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">28%</span>
+                                <span class="stat-label">Occupancy</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">$8.2M</span>
+                                <span class="stat-label">Revenue</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="zoom-slide" style="background-image: url('https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');">
+                    <div class="slide-content">
+                        <h3>Urban Boutique Hotel</h3>
+                        <p>37% ADR increase with improved direct booking ratio.</p>
+                        <div class="slide-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">37%</span>
+                                <span class="stat-label">ADR</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">65%</span>
+                                <span class="stat-label">Direct</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">4.9</span>
+                                <span class="stat-label">Rating</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="zoom-slide" style="background-image: url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');">
+                    <div class="slide-content">
+                        <h3>International Expansion</h3>
+                        <p>41% profitability boost across 3 new markets.</p>
+                        <div class="slide-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">41%</span>
+                                <span class="stat-label">Profit</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">3</span>
+                                <span class="stat-label">Markets</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">18</span>
+                                <span class="stat-label">Months</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="carousel-indicators" id="carouselIndicators">
+                <div class="indicator active" data-slide="0"></div>
+                <div class="indicator" data-slide="1"></div>
+                <div class="indicator" data-slide="2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up" data-aos-duration="700">
+                <h2>Our Services</h2>
+                <p>We offer end-to-end revenue management solutions for every aspect of hotel profitability.</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="700" data-aos-delay="200">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>AI-Powered Pricing</h3>
+                        <p>Real-time rate optimization using machine learning algorithms.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="700" data-aos-delay="400">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3>Predictive Analytics</h3>
+                        <p>Advanced forecasting models for proactive revenue strategies.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="700" data-aos-delay="600">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <h3>Market Intelligence</h3>
+                        <p>Comprehensive competitive analysis and benchmarking.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="700" data-aos-delay="800">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-sitemap"></i>
+                        </div>
+                        <h3>Distribution Strategy</h3>
+                        <p>Optimize presence across all online channels.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="700" data-aos-delay="1000">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3>Revenue Training</h3>
+                        <p>Build in-house revenue management expertise.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="700" data-aos-delay="1200">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3>Performance Optimization</h3>
+                        <p>Custom dashboards and KPI tracking.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-duration="700">
+                    <div class="stat-box">
+                        <div class="stat-number">450+</div>
+                        <div class="stat-label">Hotels</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="200">
+                    <div class="stat-box">
+                        <div class="stat-number">35%</div>
+                        <div class="stat-label">Growth</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="400">
+                    <div class="stat-box">
+                        <div class="stat-number">28</div>
+                        <div class="stat-label">Countries</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="600">
+                    <div class="stat-box">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Years</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Carousel -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up" data-aos-duration="700">
+                <h2>Client Testimonials</h2>
+                <p>Hear from hoteliers who have transformed their revenue with Imprint Hospitality.</p>
+            </div>
+        </div>
+        
+        <div class="testimonials-slider-container">
+            <div class="testimonials-slider" id="testimonialsSlider">
+                <div class="testimonial-slide">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"Imprint Hospitality completely transformed our revenue management approach. Their AI-driven pricing strategy increased our annual revenue by 42%."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">MR</div>
+                            <div class="author-info">
+                                <h4>Michael Rodriguez</h4>
+                                <p>CEO, Luxe Hotel Group</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-slide">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"After implementing their system, we saw an immediate 28% increase in occupancy and a 37% boost in ADR. Truly game-changing."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">SJ</div>
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <p>VP, Urban Boutique Hotels</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-slide">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"The ROI was achieved in just 18 months. Their market intelligence helped us expand into 3 new markets successfully."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">TW</div>
+                            <div class="author-info">
+                                <h4>Thomas Williams</h4>
+                                <p>Director, Global Hotel Ventures</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-slide">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"Our ancillary revenue increased by 58% while guest satisfaction improved. The team's expertise is unparalleled."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">EC</div>
+                            <div class="author-info">
+                                <h4>Emma Chen</h4>
+                                <p>GM, Caribbean Resorts</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-indicators" id="testimonialIndicators">
+                <div class="testimonial-indicator active" data-slide="0"></div>
+                <div class="testimonial-indicator" data-slide="1"></div>
+                <div class="testimonial-indicator" data-slide="2"></div>
+                <div class="testimonial-indicator" data-slide="3"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2 data-aos="fade-down" data-aos-duration="700">Ready to Transform Your Revenue?</h2>
+            <p data-aos="fade-up" data-aos-duration="700" data-aos-delay="200">Join 450+ hotels worldwide that have maximized profitability with our solutions.</p>
+            <a href="#" class="btn btn-lg" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="400">Get Your Free Audit</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="700">
+                    <div class="footer-widget">
+                        <h3>Imprint Hospitality</h3>
+                        <p>Leading the hospitality industry in revenue optimization through innovation and expertise.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6" data-aos="fade-up" data-aos-duration="700" data-aos-delay="200">
+                    <div class="footer-widget">
+                        <h3>Quick Links</h3>
+                        <ul class="footer-links">
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#success">Success</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-duration="700" data-aos-delay="400">
+                    <div class="footer-widget">
+                        <h3>Services</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">AI Pricing</a></li>
+                            <li><a href="#">Analytics</a></li>
+                            <li><a href="#">Market Intel</a></li>
+                            <li><a href="#">Distribution</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-duration="700" data-aos-delay="600">
+                    <div class="footer-widget">
+                        <h3>Contact</h3>
+                        <ul class="footer-links">
+                            <li><i class="fas fa-phone"></i> +1 (888) 452-1890</li>
+                            <li><i class="fas fa-envelope"></i> solutions@imprint.com</li>
+                            <li><i class="fas fa-map-marker-alt"></i> New York, NY</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Imprint Hospitality. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            once: true,
+            mirror: false,
+            duration: 1500,
+            easing: 'ease-in-out'
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('mainNav');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // FIXED: Perfect Hamburger Toggle with Color Change
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        const menuIcon = document.getElementById('menuIcon');
+        const navbarCollapse = document.getElementById('navbarNav');
+
+        // Handle collapse show/hide events for icon and color
+        navbarCollapse.addEventListener('hidden.bs.collapse', function () {
+            menuIcon.className = 'fas fa-bars';
+            // Icon color will be handled by CSS based on scroll state
+            document.body.classList.remove('menu-open');
+        });
+
+        navbarCollapse.addEventListener('shown.bs.collapse', function () {
+            menuIcon.className = 'fas fa-times';
+            // Icon color turns dark blue via CSS
+            document.body.classList.add('menu-open');
+        });
+
+        // Handle menu close when clicking a link
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                if (bsCollapse) {
+                    bsCollapse.hide();
+                    // Color will be handled by hidden.bs.collapse event
+                }
+            });
+        });
+
+        // Handle menu close when clicking outside
+        document.addEventListener('click', function(event) {
+            const isClickInside = navbarCollapse.contains(event.target) || navbarToggler.contains(event.target);
+            
+            if (!isClickInside && navbarCollapse.classList.contains('show')) {
+                const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                if (bsCollapse) {
+                    bsCollapse.hide();
+                    // Color will be handled by hidden.bs.collapse event
+                }
+            }
+        });        
+        // Handle collapse show/hide events for reliability
+        navbarCollapse.addEventListener('hidden.bs.collapse', function () {
+            menuIcon.className = 'fas fa-bars';
+            document.body.classList.remove('menu-open');
+        });
+        
+        navbarCollapse.addEventListener('shown.bs.collapse', function () {
+            menuIcon.className = 'fas fa-times';
+            document.body.classList.add('menu-open');
+        });
+        
+        // Main Carousel functionality
+        const zoomCarousel = document.getElementById('zoomCarousel');
+        const zoomSlides = document.querySelectorAll('.zoom-slide');
+        const indicators = document.querySelectorAll('#carouselIndicators .indicator');
+        
+        let currentSlide = 0;
+        const totalSlides = zoomSlides.length;
+        
+        function updateCarousel() {
+            zoomCarousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            indicators.forEach((indicator, index) => {
+                if (index === currentSlide) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+        
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentSlide = index;
+                updateCarousel();
+                resetCarouselInterval();
+            });
+        });
+        
+        // Auto slide main carousel
+        let carouselInterval = setInterval(() => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }, 6000);
+        
+        function resetCarouselInterval() {
+            clearInterval(carouselInterval);
+            carouselInterval = setInterval(() => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateCarousel();
+            }, 6000);
+        }
+        
+        // Testimonials Carousel
+        const testimonialsSlider = document.getElementById('testimonialsSlider');
+        const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+        const testimonialIndicators = document.querySelectorAll('#testimonialIndicators .testimonial-indicator');
+        
+        let currentTestimonial = 0;
+        const totalTestimonials = testimonialSlides.length;
+        
+        function updateTestimonials() {
+            testimonialsSlider.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+            
+            testimonialIndicators.forEach((indicator, index) => {
+                if (index === currentTestimonial) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+        
+        testimonialIndicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentTestimonial = index;
+                updateTestimonials();
+                resetTestimonialsInterval();
+            });
+        });
+        
+        let testimonialsInterval = setInterval(() => {
+            currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+            updateTestimonials();
+        }, 8000);
+        
+        function resetTestimonialsInterval() {
+            clearInterval(testimonialsInterval);
+            testimonialsInterval = setInterval(() => {
+                currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+                updateTestimonials();
+            }, 8000);
+        }
+        
+        // Pause carousels on hover
+        document.querySelector('.full-width-carousel').addEventListener('mouseenter', () => {
+            clearInterval(carouselInterval);
+        });
+        
+        document.querySelector('.full-width-carousel').addEventListener('mouseleave', () => {
+            resetCarouselInterval();
+        });
+        
+        document.querySelector('.testimonials-slider-container').addEventListener('mouseenter', () => {
+            clearInterval(testimonialsInterval);
+        });
+        
+        document.querySelector('.testimonials-slider-container').addEventListener('mouseleave', () => {
+            resetTestimonialsInterval();
+        });
+        
+        // Scroll to section function
+        function scrollToSection() {
+            window.scrollTo({
+                top: document.getElementById('success').offsetTop - 100,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Parallax effect for video background
+        window.addEventListener('scroll', function() {
+            const video = document.querySelector('.video-background');
+            const scrolled = window.pageYOffset;
+            video.style.transform = `translateX(-50%) translateY(calc(-50% + ${scrolled * 0.3}px))`;
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCarousel();
+            updateTestimonials();
+        });
+    </script>
+</body>
+</html>
